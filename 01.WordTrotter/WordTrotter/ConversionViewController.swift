@@ -4,6 +4,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
     
+    var cnt = 1
+    
     var fahrenheitValue: Double? {
         didSet {
             updateCelsiusLabel()
@@ -17,6 +19,27 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         else {
             return nil
         }
+    }
+    
+    override func viewDidLoad(){
+//        supper의 viewDidLoad 구현을 항상 호출한다
+        super.viewDidLoad()
+        print("viewDidLoad")
+//        print("ConversionViewController loaded its view.")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        if(cnt%3 == 0) {
+            self.view.backgroundColor = UIColor.gray
+        }
+        else if(cnt%3 == 1) {
+            self.view.backgroundColor = UIColor.green
+        }
+        else {
+            self.view.backgroundColor = UIColor.brown
+        }
+        cnt+=1
     }
     
     func updateCelsiusLabel(){
